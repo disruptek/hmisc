@@ -351,7 +351,8 @@ func treeRepr*(tree: CliCmdTree): ColoredText =
 
     for arg in t.args:
       addIndent(level + 1)
-      add hshow($arg) & "\n"
+      {.cast(noSideEffect).}:
+        add hshow($arg) & "\n"
 
     case t.kind:
       of cctCommand:
@@ -361,7 +362,8 @@ func treeRepr*(tree: CliCmdTree): ColoredText =
       of cctDashedKinds:
         for key, path in t.subPaths:
           addIndent(level + 1)
-          add hshow(key) & ": " & $path & "\n"
+          {.cast(noSideEffect).}:
+            add hshow(key) & ": " & $path & "\n"
 
       of cctGrouped:
         for entry in t.entries:

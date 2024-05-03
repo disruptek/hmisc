@@ -268,7 +268,7 @@ func globEqCmp*(path: PPrintPathElem, glob: PPrintGlobPart): bool =
     raise newImplementKindError(glob,
       &"Compare glob of kind {glob.kind} and path of kind {path.kind}")
 
-func matches*(match: PPrintMatch, path: PPrintPath): bool =
+proc matches*(match: PPrintMatch, path: PPrintPath): bool =
   for glob in match.globs:
     if gitignoreGlobMatch(path, glob, globEqCmp):
       return true

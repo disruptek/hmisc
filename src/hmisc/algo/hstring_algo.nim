@@ -548,7 +548,7 @@ func filterPrefix*(str: seq[string], pref: StrPart): seq[string] =
 
 macro joinLiteral*(body: untyped): untyped =
   if body.kind == nnkStmtList:
-    result = newLit(msgjoin body.mapIt(it.strVal())):
+    result = newLit(msgjoin body.mapIt(it.strVal()))
 
   elif body.kind in {nnkStrLit, nnkTripleStrLit}:
     result = body
